@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CodesController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\QRCodeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group([
+    'prefix' => '/admin-pannel',
+    'as' => 'admin.'
+], function() {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::controller(CodesController::class)->group(function() {
+        Route::get('/codes/lists', 'lists')->name('code.lists');
+        Route::match(['get', 'post'], '/codes/generate', 'generate')->name('code.generate');
+    });
+});
+
+
+
+Route::controller(QRCodeController::class)->group(function() {
+    Route::get('qrcode', 'index');
 });
