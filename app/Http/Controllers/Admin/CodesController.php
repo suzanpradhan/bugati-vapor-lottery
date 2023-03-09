@@ -65,7 +65,7 @@ class CodesController extends Controller
             } catch (\Exception $e) {
                 DB::rollback();
                 $this->error = 'Ops! looks like we had some problem';
-                // $this->error = $e->getMessage();
+                $this->error = $e->getMessage();
                 return redirect()->route('admin.code.generate')->with('error-message', $this->error);
             }
     
