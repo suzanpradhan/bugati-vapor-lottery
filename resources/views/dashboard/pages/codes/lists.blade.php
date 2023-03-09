@@ -14,6 +14,60 @@
         .card-title-holder .card-title {
             margin-bottom: 0px;
         }
+
+        .table img.img-holder {
+            border-radius: 3px;
+            width: 42px;
+            height: 42px;
+            padding: 3px;
+            background-color: #b0d2e9f3;
+            box-sizing: border-box;
+        }
+        
+        .update-section {
+            border-radius: 3px;
+            background: #f3f3f3;
+            padding: 10px;
+        }
+
+        .update-section > p {
+            font-size: 12px;
+            line-height: 18px;
+            font-weight: 600;
+            padding: 10px;
+            background: #fff;
+            border-radius: 3px;
+        }
+
+        .top-infos {
+            display: flex;
+            justify-content: flex-start;
+            align-content: center;
+        }
+
+        .info-data {
+            flex: 3;
+        }
+
+        .qr-holder {
+            flex: 1;
+            overflow: hidden;
+            padding: 5px;
+            background: #fff;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+
+        .qr-holder > img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .informations > h4 {
+            margin-top: 20px;
+            text-indent: 20px;
+        }
     </style>
 @endpush
 
@@ -24,13 +78,13 @@
             <div class="card-body">
                 <div class="card-title-holder">
                     <h4 class="card-title">All QR Codes</h4>
-                    <button type="button" class="btn btn-gradient-primary btn-icon-text btn-sm">
+                    <a href="{{ route('admin.code.generate') }}" class="btn btn-gradient-primary btn-icon-text btn-sm">
                         <i class="mdi mdi-plus btn-icon-prepend"></i> Generate New
-                    </button>
+                    </a>
                 </div>
                 <hr>
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" id="codeTable">
                         <thead>
                             <tr>
                                 <th> ID </th>
@@ -44,101 +98,28 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($codes as $code)
                             <tr>
-                                <td> 1080 </td>
+                                <td> {{$code->id}} </td>
                                 <td>
-                                    <img src="{{asset('dashboard/assets/images/faces/face1.jpg')}}" class="me-2"
-                                        alt="image"> David Grey
+                                    <img src="{{asset('storage/'. $code->qr_path);}}" class="img-holder"
+                                        alt="QR-Code">
                                 </td>
-                                <td> 0000000025 </td>
-                                <td> 1 </td>
+                                <td> {{$code->security_no}} </td>
+                                <td> {{$code->scanned}} </td>
                                 <td> Kathmandu, Nepal </td>
                                 <td> March 5, 2023 </td>
                                 <td>
                                     <label class="badge badge-gradient-success">Correct Scanned</label>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-gradient-danger btn-icon btn-sm" title="View Details">
+                                    <button type="button" class="btn btn-gradient-danger btn-icon btn-sm viewdetails" title="View Details" data-id='{{ $code->id }}'>
                                         <i class="mdi mdi-eye btn-icon-prepend"></i>
                                     </button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td> 1506 </td>
-                                <td>
-                                    <img src="{{asset('dashboard/assets/images/faces/face1.jpg')}}" class="me-2"
-                                        alt="image"> David Grey
-                                </td>
-                                <td> 0000013025 </td>
-                                <td> 4 </td>
-                                <td> Kathmandu, Nepal </td>
-                                <td> March 5, 2023 </td>
-                                <td>
-                                    <label class="badge badge-gradient-danger">Repeat Scanned</label>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-gradient-danger btn-icon btn-sm" title="View Details">
-                                        <i class="mdi mdi-eye btn-icon-prepend"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td> 256 </td>
-                                <td>
-                                    <img src="{{asset('dashboard/assets/images/faces/face1.jpg')}}" class="me-2"
-                                        alt="image"> David Grey
-                                </td>
-                                <td> 0000330025 </td>
-                                <td> 1 </td>
-                                <td> Kathmandu, Nepal </td>
-                                <td> March 5, 2023 </td>
-                                <td>
-                                    <label class="badge badge-gradient-success">Correct Scanned</label>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-gradient-danger btn-icon btn-sm" title="View Details">
-                                        <i class="mdi mdi-eye btn-icon-prepend"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td> 69854 </td>
-                                <td>
-                                    <img src="{{asset('dashboard/assets/images/faces/face1.jpg')}}" class="me-2"
-                                        alt="image"> David Grey
-                                </td>
-                                <td> 0000006354 </td>
-                                <td> 2 </td>
-                                <td> Kathmandu, Nepal </td>
-                                <td> March 5, 2023 </td>
-                                <td>
-                                    <label class="badge badge-gradient-danger">Repeat Scanned</label>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-gradient-danger btn-icon btn-sm" title="View Details">
-                                        <i class="mdi mdi-eye btn-icon-prepend"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td> 1125 </td>
-                                <td>
-                                    <img src="{{asset('dashboard/assets/images/faces/face1.jpg')}}" class="me-2"
-                                        alt="image"> David Grey
-                                </td>
-                                <td> 0000015698 </td>
-                                <td> 105 </td>
-                                <td> Kathmandu, Nepal </td>
-                                <td> March 5, 2023 </td>
-                                <td>
-                                    <label class="badge badge-gradient-danger">Repeat Scanned</label>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-gradient-danger btn-icon btn-sm" title="View Details">
-                                        <i class="mdi mdi-eye btn-icon-prepend"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @endforeach
+                            @include('dashboard.includes._viewModal')
                         </tbody>
                     </table>
                 </div>
@@ -147,3 +128,38 @@
     </div>
 </div>
 @stop
+
+@push('extra-scripts')
+    <script type='text/javascript'>
+        $(document).ready(function(){
+    
+        $('#codeTable').on('click','.viewdetails',function(){
+            var codeId = $(this).attr('data-id');
+    
+            if(codeId > 0){
+    
+                // AJAX request
+                var url = "{{ route('admin.code.show',[':codeId']) }}";
+                url = url.replace(':codeId',codeId);
+    
+                // Empty modal data
+                $('#viewData').empty();
+    
+                $.ajax({
+                    url: url,
+                    dataType: 'json',
+                    success: function(response){
+    
+                        // Add employee details
+                        $('#viewData').html(response.html);
+    
+                        // Display Modal
+                        $('#viewModal').modal('show'); 
+                    }
+                });
+            }
+        });
+    
+        });
+    </script>
+@endpush
