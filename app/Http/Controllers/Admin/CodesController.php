@@ -56,15 +56,13 @@ class CodesController extends Controller
                     $qrCode = QrCode::format('png')->size(100)->errorCorrection('H')->generate($url.'/'.$securityNo); // Generate QR
                     Storage::disk('public')->put($imgPath, $qrCode); // image save
                     // create code
-                    $code = new Code();
+                    $code = new Code;
                     $code->security_no = $securityNo;
                     $code->qr_path = $imgPath;
                     $code->scanned = 0;
                     $code->save(); // saving code
                     
-                    // if ( ! $code->save() ) {
-                    //     throw new StorageException('Could not create user');
-                    // }
+                    DB::commit();
                 }
             } catch (\Exception $e) {
                 DB::rollback();
