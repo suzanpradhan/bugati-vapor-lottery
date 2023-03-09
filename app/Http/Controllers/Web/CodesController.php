@@ -74,7 +74,7 @@ class CodesController extends Controller
             DB::beginTransaction();
             try{
 
-                // $getCode->scanned = $getCode->scanned + 1;
+                $getCode->scanned = $getCode->scanned + 1;
                 $getCode->save();
                 DB::commit();
 
@@ -94,7 +94,7 @@ class CodesController extends Controller
         DB::beginTransaction();
         try{
 
-            // $getCode->scanned = $getCode->scanned + 1;
+            $getCode->scanned = $getCode->scanned + 1;
             $getCode->save();
             DB::commit();
 
