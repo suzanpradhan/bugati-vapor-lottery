@@ -96,7 +96,7 @@ class CodesController extends Controller
             $inject2 = "<h4>Last 5 Scanned: </h4><div class='update-section'>";
             foreach($informations as $info)
             {
-                $inject2 .= "<p>Beijing Time: ". $info->currentTime ." (UTC+8), IP: ". $info->ip ." </span></p>";
+                $inject2 .= "<p>Beijing Time: <span>". $info->currentTime ."</span> (UTC+8), IP: <span>". $info->ip ."</span>, Address: <span>". $info->cityName .', '. $info->countryName ."</span></p>";
             }
             $inject2 .= "</div>";
         }

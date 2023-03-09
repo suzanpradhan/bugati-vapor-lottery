@@ -34,9 +34,15 @@
             font-size: 12px;
             line-height: 18px;
             font-weight: 600;
+            color: #555;
             padding: 10px;
             background: #fff;
             border-radius: 3px;
+        }
+
+        .update-section span {
+            font-weight: 700;
+            color: #333;
         }
 
         .top-infos {
