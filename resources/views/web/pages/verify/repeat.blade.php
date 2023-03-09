@@ -14,7 +14,7 @@
         .underlay-background {
             position: absolute;
             top: 0;
-            bottom: -300px;
+            bottom: -450px;
             left: 0;
             right: 0;
             z-index: -1;
@@ -159,6 +159,21 @@
             text-align: center;
             margin: 20px 0;
         }
+
+        .update-section > p {
+            font-size: 12px;
+            line-height: 18px;
+            font-weight: 600;
+            color: #555;
+            padding: 10px;
+            background: #fff;
+            border-radius: 3px;
+        }
+
+        .update-section span {
+            font-weight: 700;
+            color: #333;
+        }
     </style>
 @endpush
 
@@ -203,10 +218,25 @@
                     <div class="details">
                         <h4>Scan Results</h4>
                         <h5>The security code you have queried has been queried <span>{{ $code->scanned }} time(s)</span>, 
-                            first query <span>Beijing Time: 2022/03/15 5:45:35(UTC+8), IP:84:656L5468468 </span>, Please confirm. 
+                            first query <span>Beijing Time:{{ $information->currentTime }}(UTC+8), IP: {{ $information->ip }}, Location: {{ $information->cityName }}, {{ $information->countryName }} </span>, Please confirm. 
                             Warning: if this time period is not my query, beware of counterfeiting!</h5>
                     </div>
                 </div>
+                <div class="info-items">
+                    <div class="icon-holder-sm">
+                        <img src="{{ asset('web/assets/images/close.png') }}" alt="Verified">
+                    </div>
+                    <div class="details">
+                        <h4>Last 3 Scanned</h4>
+                        <div class='update-section'>
+                            <?php $totalCode = $code->informations->count(); ?>
+                            @foreach ($code->informations->skip($totalCode - 3)->take(3) as $info)
+                            <p>Beijing Time: <span> {{ $info->currentTime }} </span> (UTC+8), IP: <span> {{ $info->ip }} </span>, Address: <span> {{ $info->cityName }}, {{ $info->countryName }}</span></p>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="info-items">
                     <div class="icon-holder-sm">
                         <img src="{{ asset('web/assets/images/check.png') }}" alt="Verified">

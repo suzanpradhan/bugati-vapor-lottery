@@ -79,7 +79,8 @@ class CodesController extends Controller
                 DB::commit();
 
                 return view('web.pages.verify.correct', [
-                    'code' => $getCode
+                    'code' => $getCode,
+                    'information' => $getCode->informations->first()
                 ]);
 
             } catch (\Exception $e) {
@@ -99,7 +100,8 @@ class CodesController extends Controller
             DB::commit();
 
             return view('web.pages.verify.repeat', [
-                'code' => $getCode
+                'code' => $getCode,
+                'information' => $getCode->informations->first()
             ]);
 
         } catch (\Exception $e) {
