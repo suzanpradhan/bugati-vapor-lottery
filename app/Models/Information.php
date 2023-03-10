@@ -29,4 +29,9 @@ class Information extends Model
         'timezone',
         'currentTime'
     ];
+
+    public function code()
+    {
+        return $this->belongsTo(Code::class);
+    }
 }

@@ -17,7 +17,7 @@ class CodesController extends Controller
 
     public function lists() 
     {
-        $codes = Code::orderBy('id','desc')->paginate(5);
+        $codes = Code::orderBy('id','desc')->get();
         return view('dashboard.pages.codes.lists', compact('codes'));
     }
 
