@@ -25,7 +25,9 @@
                         class="mdi mdi-chart-line mdi-24px float-right"></i>
                 </h4>
                 <h2 class="mb-5">{{ $totalCode }}</h2>
+                @if(!$growthPercentage == 0)
                 <h6 class="card-text">{{ ($growthPercentage > 0) ? 'Increased':'Decreased'}} by {{ abs($growthPercentage) }}%</h6>
+                @endif
             </div>
         </div>
     </div>
@@ -38,7 +40,9 @@
                         class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
                 </h4>
                 <h2 class="mb-5">{{ $scannedCode }}</h2>
+                @if(!$scannedGrowthPercentage == 0)
                 <h6 class="card-text">{{ ($scannedGrowthPercentage > 0) ? 'Increased':'Decreased'}} by {{ abs($scannedGrowthPercentage) }}%</h6>
+                @endif
             </div>
         </div>
     </div>
@@ -51,7 +55,9 @@
                         class="mdi mdi-diamond mdi-24px float-right"></i>
                 </h4>
                 <h2 class="mb-5">{{ $multScannedCode }}</h2>
+                @if(!$multiScannedGrowthPercentage == 0)
                 <h6 class="card-text">{{ ($multiScannedGrowthPercentage > 0) ? 'Increased':'Decreased'}} by {{ abs($multiScannedGrowthPercentage) }}%</h6>
+                @endif
             </div>
         </div>
     </div>
