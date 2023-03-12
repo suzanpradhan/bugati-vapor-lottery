@@ -30,7 +30,8 @@ class CodesController extends Controller
             abort(404);
         }
 
-        $ip = '103.186.197.152'; //request()->ip(); // current request ip
+        // $ip = '103.186.197.152'; 
+        $ip = request()->ip(); // current request ip
         $currentUserInfo = Location::get($ip); // user location information
         date_default_timezone_set('Asia/Shanghai'); // change timezone to asia/shanghai
         $currentTime = Carbon::now(); // according to set timezone

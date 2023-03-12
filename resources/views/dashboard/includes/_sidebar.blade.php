@@ -29,15 +29,37 @@
             </span>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                aria-controls="ui-basic">
+            <a class="nav-link" data-bs-toggle="collapse" href="#code" aria-expanded="false"
+                aria-controls="code">
                 <span class="menu-title">Codes</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="code">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.code.lists') }}">Show Lists</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.code.generate') }}">Generate New Codes</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item sidebar-actions">
+            <span class="nav-link">
+                <div class="border-bottom">
+                    <h6 class="font-weight-normal mb-3">Lottery Generate</h6>
+                </div>
+            </span>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#lottery" aria-expanded="false"
+                aria-controls="lottery">
+                <span class="menu-title">Lotteries</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="lottery">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.lottery.lists') }}">Show Lists</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.lottery.create') }}">Create New Lottery</a></li>
                 </ul>
             </div>
         </li>

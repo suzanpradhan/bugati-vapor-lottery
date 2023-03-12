@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.main')
 
-@section('title', ' - Code Lists')
+@section('title', ' - Lottery Lists')
 
 @push('extra-styles')
     <style>
@@ -81,9 +81,9 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title-holder">
-                    <h4 class="card-title">All QR Codes</h4>
-                    <a href="{{ route('admin.code.generate') }}" class="btn btn-gradient-primary btn-icon-text btn-sm">
-                        <i class="mdi mdi-plus btn-icon-prepend"></i> Generate New
+                    <h4 class="card-title">All Lotteries</h4>
+                    <a href="{{ route('admin.lottery.create') }}" class="btn btn-gradient-primary btn-icon-text btn-sm">
+                        <i class="mdi mdi-plus btn-icon-prepend"></i> Create New
                     </a>
                 </div>
                 <hr>
@@ -92,38 +92,41 @@
                         <thead>
                             <tr>
                                 <th> ID </th>
-                                <th> QR </th>
-                                <th> Security No. </th>
-                                <th> Scanned No. </th>
-                                <th> Location </th>
-                                <th> Date </th>
+                                <th> Title </th>
+                                <th> Starts On </th>
+                                <th> Ends On </th>
+                                <th> Applicant </th>
                                 <th> Status </th>
                                 <th> Action </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($codes as $code)
+                            @foreach($lotteries as $lottery)
                             <tr>
-                                <td> {{$code->id}} </td>
+                                <td> {{$lottery->id}} </td>
+                                <td> {{$lottery->title}} </td>
+                                <td> {{$lottery->from_date}} </td>
+                                <td> {{$lottery->to_date}} </td>
+                                <td> no of applicant </td>
                                 <td>
-                                    <img src="{{asset('storage/'. $code->qr_path);}}" class="img-holder"
-                                        alt="QR-Code">
-                                </td>
-                                <td> {{$code->security_no}} </td>
-                                <td> {{$code->scanned}} </td>
-                                <td> {{$code->informations->first()->cityName, $code->informations->first()->countryName}} </td>
-                                <td> {{$code->informations->first()->currentTime}} </td>
-                                <td>
-                                    <label class="badge {{($code->scanned <= 1) ? 'badge-gradient-success':'badge-gradient-danger'}}">{{($code->scanned <= 1) ? 'Correct Scanned':'Repeat Scanned'}}</label>
+                                    <label class="badge badge-gradient-success">Open</label>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-gradient-danger btn-icon btn-sm viewdetails" title="View Details" data-id='{{ $code->id }}'>
+                                    <button type="button" class="btn btn-gradient-danger btn-icon btn-sm viewdetails" title="View Details">
                                         <i class="mdi mdi-eye btn-icon-prepend"></i>
                                     </button>
+                                    <a href="" class="btn btn-gradient-danger btn-icon btn-sm"
+                                        title="Open/Close Lottery" data-id='{{ $lottery->id }}'
+                                    ><i class="mdi mdi-eye btn-icon-prepend"></i></a>
+                                    <a href="" class="btn btn-gradient-danger btn-icon btn-sm"
+                                        title="Edit Lottery" data-id='{{ $lottery->id }}'
+                                    ><i class="mdi mdi-eye btn-icon-prepend"></i></a>
+                                    <a href="" class="btn btn-gradient-danger btn-icon btn-sm"
+                                        title="Delete Lottery" data-id='{{ $lottery->id }}'
+                                    ><i class="mdi mdi-eye btn-icon-prepend"></i></a>
                                 </td>
                             </tr>
                             @endforeach
-                            @include('dashboard.includes._viewModal')
                         </tbody>
                     </table>
                 </div>
