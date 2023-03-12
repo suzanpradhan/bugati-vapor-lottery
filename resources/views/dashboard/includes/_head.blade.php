@@ -11,5 +11,13 @@
 <link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css')}}">
 <!-- End layout styles -->
 <link rel="shortcut icon" href="{{asset('dashboard/assets/images/favicon.ico')}}" />
-
+<style>
+    .navbar .navbar-brand-wrapper .navbar-brand img {
+        height: auto;
+    }
+    .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini img {
+        width: 100%;
+        margin-left: 36px;
+    }
+</style>
 @stack('extra-styles')

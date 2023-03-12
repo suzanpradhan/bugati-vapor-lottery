@@ -171,7 +171,7 @@
 
         <div class="main-section">
             <div class="logo-holder">
-                <img src="{{ asset('web/assets/images/logo.svg') }}" alt="bugatti-logo">
+                <img src="{{ asset('web/assets/images/logo.webp') }}" alt="bugatti-logo">
             </div>
             <div class="icon-holder">
                 <img src="{{ asset('web/assets/images/verified.png') }}" alt="Verified">
@@ -242,7 +242,7 @@
                 </div>
 
                 <div class="register-btn">
-                    <a href="" class="btn btn-gradient-success me-2">Register for lottery</a>
+                    <a href="{{route('web.landing')}}" class="btn btn-gradient-success me-2">Register for lottery</a>
                 </div>
             </div>
         </div>
