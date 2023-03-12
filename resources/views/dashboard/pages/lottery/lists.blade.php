@@ -15,62 +15,10 @@
             margin-bottom: 0px;
         }
 
-        .table img.img-holder {
-            border-radius: unset;
-            width: 8mm;
-            height: 8mm;
-            box-sizing: border-box;
-        }
-        
-        .update-section {
-            border-radius: 3px;
-            background: #f3f3f3;
-            padding: 10px;
-        }
-
-        .update-section > p {
-            font-size: 12px;
-            line-height: 18px;
-            font-weight: 600;
-            color: #555;
-            padding: 10px;
-            background: #fff;
-            border-radius: 3px;
-        }
-
-        .update-section span {
-            font-weight: 700;
-            color: #333;
-        }
-
-        .top-infos {
-            display: flex;
-            justify-content: flex-start;
-            align-content: center;
-        }
-
-        .info-data {
-            flex: 3;
-        }
-
-        .qr-holder {
-            flex: 1;
-            overflow: hidden;
-            padding: 5px;
-            background: #fff;
-            border-radius: 3px;
-            margin-right: 10px;
-        }
-
-        .qr-holder > img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-
-        .informations > h4 {
-            margin-top: 20px;
-            text-indent: 20px;
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 @endpush
@@ -88,7 +36,7 @@
                 </div>
                 <hr>
                 <div class="table-responsive">
-                    <table class="table" id="codeTable">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th> ID </th>
@@ -109,21 +57,33 @@
                                 <td> {{$lottery->to_date}} </td>
                                 <td> no of applicant </td>
                                 <td>
-                                    <label class="badge badge-gradient-success">Open</label>
+                                    <label class="badge {{$lottery->is_active ? 'badge-gradient-success':'badge-gradient-danger'}}">{{$lottery->is_active ? 'Open':'Close'}}</label>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-gradient-danger btn-icon btn-sm viewdetails" title="View Details">
-                                        <i class="mdi mdi-eye btn-icon-prepend"></i>
-                                    </button>
-                                    <a href="" class="btn btn-gradient-danger btn-icon btn-sm"
-                                        title="Open/Close Lottery" data-id='{{ $lottery->id }}'
-                                    ><i class="mdi mdi-eye btn-icon-prepend"></i></a>
-                                    <a href="" class="btn btn-gradient-danger btn-icon btn-sm"
-                                        title="Edit Lottery" data-id='{{ $lottery->id }}'
-                                    ><i class="mdi mdi-eye btn-icon-prepend"></i></a>
-                                    <a href="" class="btn btn-gradient-danger btn-icon btn-sm"
-                                        title="Delete Lottery" data-id='{{ $lottery->id }}'
-                                    ><i class="mdi mdi-eye btn-icon-prepend"></i></a>
+                                    <a href="{{ route('admin.lottery.applicants', ['id' => $lottery->id]) }}" class="btn btn-gradient-primary btn-icon btn-sm"
+                                        title="View Lottery Applicants"
+                                    ><i class="mdi mdi-account-check-outline"></i></a>
+
+                                    <a href="{{ route('admin.lottery.change.status', ['id' => $lottery->id]) }}" 
+                                        class="btn {{!$lottery->is_active ? 'badge-gradient-success':'badge-gradient-primary'}} btn-icon btn-sm"
+                                        title="{{ !$lottery->is_active ? 'Open':'Close' }} Lottery">
+                                        <i class="mdi {{!$lottery->is_active ? 'mdi-lock-open-outline':'mdi-lock-outline'}}"></i>
+                                    </a>
+
+                                    <a href="{{ route('admin.lottery.update', ['id' => $lottery->id]) }}" class="btn btn-gradient-warning btn-icon btn-sm"
+                                        title="Edit Lottery"
+                                    ><i class="mdi mdi-square-edit-outline"></i></a>
+
+                                    <form method="post" action="{{route('admin.lottery.delete', $lottery->id)}}" style="display: inline-block;">
+                                        @method('delete')
+                                        @csrf
+                                        <button type="submit" 
+                                            class="btn btn-gradient-danger btn-icon btn-sm"
+                                            title="Delete Lottery"
+                                            onclick= "return confirm('Are You Sure Want to Delete?')">
+                                            <i class="mdi mdi-trash-can-outline"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -135,38 +95,3 @@
     </div>
 </div>
 @stop
-
-@push('extra-scripts')
-    <script type='text/javascript'>
-        $(document).ready(function(){
-    
-        $('#codeTable').on('click','.viewdetails',function(){
-            var codeId = $(this).attr('data-id');
-    
-            if(codeId > 0){
-    
-                // AJAX request
-                var url = "{{ route('admin.code.show',[':codeId']) }}";
-                url = url.replace(':codeId',codeId);
-    
-                // Empty modal data
-                $('#viewData').empty();
-    
-                $.ajax({
-                    url: url,
-                    dataType: 'json',
-                    success: function(response){
-    
-                        // Add employee details
-                        $('#viewData').html(response.html);
-    
-                        // Display Modal
-                        $('#viewModal').modal('show'); 
-                    }
-                });
-            }
-        });
-    
-        });
-    </script>
-@endpush
