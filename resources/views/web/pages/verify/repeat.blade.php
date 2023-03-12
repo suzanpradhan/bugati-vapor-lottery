@@ -174,6 +174,11 @@
             font-weight: 700;
             color: #333;
         }
+
+        .register-btn {
+            text-align: center;
+            margin: 20px 0;
+        }
     </style>
 @endpush
 
@@ -186,7 +191,7 @@
 
         <div class="main-section">
             <div class="logo-holder">
-                <img src="{{ asset('web/assets/images/logo.svg') }}" alt="bugatti-logo">
+                <img src="{{ asset('web/assets/images/logo.webp') }}" alt="bugatti-logo">
             </div>
             <div class="icon-holder">
                 <img src="{{ asset('web/assets/images/alert.png') }}" alt="Verified">
@@ -271,6 +276,10 @@
                             <p>1301 Shotgun Road Sunrise FL 33326 USA</p>
                         </div>
                     </div>
+                </div>
+
+                <div class="register-btn">
+                    <a href="{{route('web.landing')}}" class="btn btn-gradient-success me-2">Register for lottery</a>
                 </div>
             </div>
         </div>
