@@ -55,7 +55,7 @@
                                 <td> {{$lottery->title}} </td>
                                 <td> {{$lottery->from_date}} </td>
                                 <td> {{$lottery->to_date}} </td>
-                                <td> no of applicant </td>
+                                <td> {{isset($lottery->applicants) ? count($lottery->applicants):0}} </td>
                                 <td>
                                     <label class="badge {{$lottery->is_active ? 'badge-gradient-success':'badge-gradient-danger'}}">{{$lottery->is_active ? 'Open':'Close'}}</label>
                                 </td>

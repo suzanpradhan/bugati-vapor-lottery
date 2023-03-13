@@ -111,8 +111,13 @@
                                 </td>
                                 <td> {{$code->security_no}} </td>
                                 <td> {{$code->scanned}} </td>
+                                @if($code->informations->first() !== null)
                                 <td> {{$code->informations->first()->cityName, $code->informations->first()->countryName}} </td>
                                 <td> {{$code->informations->first()->currentTime}} </td>
+                                @else
+                                <td> </td>
+                                <td> </td>
+                                @endif
                                 <td>
                                     <label class="badge {{($code->scanned <= 1) ? 'badge-gradient-success':'badge-gradient-danger'}}">{{($code->scanned <= 1) ? 'Correct Scanned':'Repeat Scanned'}}</label>
                                 </td>
