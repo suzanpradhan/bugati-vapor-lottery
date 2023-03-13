@@ -41,7 +41,7 @@ class CodesController extends Controller
             $qrCountNo = Code::get()->count(); // current no of qr in table
             $count = $request->number; // user define
             $domain = URL::to('/'); // generate url
-            $url = $domain.'/verify-product';
+            $url = $domain.'/vp';
 
             try {
                 // multiple qr generate
