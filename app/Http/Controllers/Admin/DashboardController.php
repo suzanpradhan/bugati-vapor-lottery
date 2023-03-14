@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Code;
 use App\Models\Information;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -52,5 +54,12 @@ class DashboardController extends Controller
             return 0;
         }
         return ($decreaseValue / $oldNumber) * 100;
+    }
+
+    public function signOut() {
+        Session::flush();
+        Auth::logout();
+  
+        return Redirect('login');
     }
 }
