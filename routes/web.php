@@ -28,7 +28,7 @@ Route::group([
         Route::match(['get', 'post'], '/lotteries/create', 'create')->name('lottery.create');
         Route::match(['get', 'post'], '/lotteries/update/{id}', 'update')->name('lottery.update');
         Route::get('/change-status/{id}', 'changeStatus')->name('lottery.change.status');
-        Route::get('/delete/{id}', 'delete')->name('lottery.delete');
+        Route::delete('/delete/{id}', 'delete')->name('lottery.delete');
         Route::get('/lottery/applicants/{id}', 'applicants')->name('lottery.applicants');
     });
 });
