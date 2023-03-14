@@ -19,7 +19,8 @@ class CodesController extends Controller
         // if no security no in parameter return view
         if(!$security_no)
         {
-            return view('web.pages.verify.verify-product');
+            // return view('web.pages.verify.verify-product');
+            abort('404');
         }
 
         // if security no exist get the first data
@@ -65,7 +66,7 @@ class CodesController extends Controller
             DB::rollback();
             $this->error = 'Ops! looks like we had some problem';
             // $this->error = $e->getMessage();
-            return redirect()->route('admin.code.generate')->with('error-message', $this->error);
+            return redirect()->route('web.contact')->with('error-message', $this->error);
         }
         
 
@@ -88,7 +89,7 @@ class CodesController extends Controller
                 DB::rollback();
                 $this->error = 'Ops! looks like we had some problem';
                 // $this->error = $e->getMessage();
-                return redirect()->back()->with('error-message', $this->error);
+                return redirect()->route('web.contact')->with('error-message', $this->error);
             }
         }
 
@@ -109,7 +110,7 @@ class CodesController extends Controller
             DB::rollback();
             $this->error = 'Ops! looks like we had some problem';
             // $this->error = $e->getMessage();
-            return redirect()->route('admin.code.generate')->with('error-message', $this->error);
+            return redirect()->route('web.contact')->with('error-message', $this->error);
         }
     }
 }
