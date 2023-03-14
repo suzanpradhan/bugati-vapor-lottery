@@ -31,6 +31,9 @@
                             <img src="{{ asset('dashboard/assets/images/logo.webp') }}">
                         </div>
                         <h4>Sign in to continue</h4>
+                        @if (Session::has('error_message'))
+                            <div class="alert alert-danger">{{Session::get('error_message')}}</div>
+                        @endif
                         <form class="pt-3" action="{{ route('login') }}" method="POST">
                             @csrf
                             <div class="form-group has-validation">
@@ -73,6 +76,11 @@
     <script src="{{ asset('dashboard/assets/js/off-canvas.js') }}"></script>
     <script src="{{ asset('dashboard/assets/js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('dashboard/assets/js/misc.js') }}"></script>
+    <script>
+        $(".alert").delay(3000).queue(function() {
+            $(this).remove();
+        });
+    </script>
     <!-- endinject -->
     </body>
 
