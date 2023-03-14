@@ -69,21 +69,6 @@
                                         title="{{ !$lottery->is_active ? 'Open':'Close' }} Lottery">
                                         <i class="mdi {{!$lottery->is_active ? 'mdi-lock-open-outline':'mdi-lock-outline'}}"></i>
                                     </a>
-
-                                    <a href="{{ route('admin.lottery.update', ['id' => $lottery->id]) }}" class="btn btn-gradient-warning btn-icon btn-sm"
-                                        title="Edit Lottery"
-                                    ><i class="mdi mdi-square-edit-outline"></i></a>
-
-                                    <form method="post" action="{{route('admin.lottery.delete', $lottery->id)}}" style="display: inline-block;">
-                                        @method('delete')
-                                        @csrf
-                                        <button type="submit" 
-                                            class="btn btn-gradient-danger btn-icon btn-sm"
-                                            title="Delete Lottery"
-                                            onclick= "return confirm('Are You Sure Want to Delete?')">
-                                            <i class="mdi mdi-trash-can-outline"></i>
-                                        </button>
-                                    </form>
                                 </td>
                             </tr>
                             @endforeach

@@ -1,0 +1,1 @@
+[11-Mar-2023 02:23:04 Asia/Kathmandu] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in /home/kurmate1/astral.kurmatechnepal.com/vendor/bacon/bacon-qr-code/src/Renderer/Image/ImagickImageBackEnd.php on line 169

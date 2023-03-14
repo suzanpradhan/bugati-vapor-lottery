@@ -88,7 +88,7 @@ class CodesController extends Controller
             $inject1 = "<span class='badge badge-gradient-success'>Correct Sacn: </span><p>The security code you have queried has not been scanned yet and the product is <span>genuine</span>.</p>";
         } else {
             $inject1 = "<span class='badge badge-gradient-danger'>Repeat Sacn: </span><p>The security code has been queried <span>". $code->scanned ."time(s)</span>, 
-            first query <span> Beijing Time:". $information->currentTime ." (UTC+8), IP:". $information->ip ." </span></p>";
+            first query <span> Israel Time:". $information->currentTime ." (UTC+2), IP:". $information->ip ." </span></p>";
         }
 
         if($informations)
@@ -96,7 +96,7 @@ class CodesController extends Controller
             $inject2 = "<h4>Last 5 Scanned: </h4><div class='update-section'>";
             foreach($informations as $info)
             {
-                $inject2 .= "<p>Beijing Time: <span>". $info->currentTime ."</span> (UTC+8), IP: <span>". $info->ip ."</span>, Address: <span>". $info->cityName .', '. $info->countryName ."</span></p>";
+                $inject2 .= "<p>Israel Time: <span>". $info->currentTime ."</span> (UTC+2), IP: <span>". $info->ip ."</span>, Address: <span>". $info->cityName .', '. $info->countryName ."</span></p>";
             }
             $inject2 .= "</div>";
         }
