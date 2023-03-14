@@ -14,6 +14,7 @@ class Code extends Model
 
     protected $fillable = [
         'security_no',
+        'qrs',
         'qr_path',
         'scanned',
     ];

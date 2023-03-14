@@ -76,6 +76,9 @@
                     </table>
                 </div>
             </div>
+            <div class="card-footer">
+                {{ $lotteries->links() }}
+            </div>
         </div>
     </div>
 </div>

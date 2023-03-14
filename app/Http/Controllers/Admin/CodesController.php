@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\CodesImport;
 use App\Models\Code;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
+use Maatwebsite\Excel\Facades\Excel;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CodesController extends Controller
@@ -17,11 +19,41 @@ class CodesController extends Controller
 
     public function lists() 
     {
-        $codes = Code::orderBy('id','desc')->get();
+        $codes = Code::orderBy('id','desc')->paginate(10)->fragment('codes');
         return view('dashboard.pages.codes.lists', compact('codes'));
     }
 
     public function generate(Request $request) 
+    {
+        if ($request->isMethod('get'))
+        {
+            return view('dashboard.pages.codes.generate');
+        }
+
+        if ($request->isMethod('POST')) 
+        {
+            $request->validate([
+                'file' => 'required|file|mimes:xlsx,xls,csv,txt'
+            ]);
+
+            ini_set('memory_limit', -1);
+            DB::beginTransaction();
+
+            try {
+                set_time_limit(0);
+                Excel::import(new CodesImport, $request->file('file'));
+                DB::commit();
+                return redirect()->route('admin.code.lists')->with('success', 'File imported successfully');
+            } catch (\Exception $e) {
+                DB::rollback();
+                $this->error = 'Ops! looks like we had some problem';
+                // $this->error = $e->getMessage();
+                return redirect()->route('admin.code.generate')->with('error-message', $this->error);
+            }
+        }
+    }
+
+    public function generateBackup(Request $request) 
     {
         if ($request->isMethod('get'))
         {

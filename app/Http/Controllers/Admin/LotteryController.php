@@ -13,7 +13,7 @@ class LotteryController extends Controller
 
     public function lists() 
     {
-        $lotteries = Lottery::orderBy('id','desc')->get();
+        $lotteries = Lottery::orderBy('id','desc')->paginate(10);
         return view('dashboard.pages.lottery.lists', compact('lotteries'));
     }
 

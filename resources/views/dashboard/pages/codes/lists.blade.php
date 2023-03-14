@@ -83,7 +83,7 @@
                 <div class="card-title-holder">
                     <h4 class="card-title">All QR Codes</h4>
                     <a href="{{ route('admin.code.generate') }}" class="btn btn-gradient-primary btn-icon-text btn-sm">
-                        <i class="mdi mdi-plus btn-icon-prepend"></i> Generate New
+                        <i class="mdi mdi-plus btn-icon-prepend"></i> Import New
                     </a>
                 </div>
                 <hr>
@@ -92,8 +92,9 @@
                         <thead>
                             <tr>
                                 <th> ID </th>
-                                <th> QR </th>
+                                {{-- <th> QR </th> --}}
                                 <th> Security No. </th>
+                                <th> QrCode </th>
                                 <th> Scanned No. </th>
                                 <th> Location </th>
                                 <th> Date </th>
@@ -105,11 +106,17 @@
                             @foreach($codes as $code)
                             <tr>
                                 <td> {{$code->id}} </td>
-                                <td>
-                                    <img src="{{asset('storage/'. $code->qr_path);}}" class="img-holder"
-                                        alt="QR-Code">
-                                </td>
+                                {{-- <td>
+                                    @if ($code->qr_path)
+                                    <img src="{{asset('storage/'. $code->qr_path)}}" class="img-holder"
+                                    alt="QR-Code">
+                                    @else
+                                    <img src="{{asset('dashboard/assets/images/no-qr.png')}}" class="img-holder"
+                                    alt="QR-Code">
+                                    @endif
+                                </td> --}}
                                 <td> {{$code->security_no}} </td>
+                                <td> {{$code->qrs}} </td>
                                 <td> {{$code->scanned}} </td>
                                 @if($code->informations->first() !== null)
                                 <td> {{$code->informations->first()->cityName, $code->informations->first()->countryName}} </td>
@@ -132,6 +139,9 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="card-footer">
+                {{ $codes->links() }}
             </div>
         </div>
     </div>
