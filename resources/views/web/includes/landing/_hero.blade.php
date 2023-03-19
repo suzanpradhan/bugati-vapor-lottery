@@ -53,7 +53,7 @@ background-size: cover; min-height: 100vh; position: relative; background-attach
     </div>
 </header> --}}
 
-<div class="container-fluid">
+<div class="container-fluid" id="contact">
     <div class="row no-gutter" style="position: relative;">
         <!-- The overlay -->
         <div class="d-block d-md-none bg-image-sm"></div>
