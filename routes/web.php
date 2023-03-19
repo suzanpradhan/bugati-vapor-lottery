@@ -30,6 +30,8 @@ Route::group([
         Route::get('/change-status/{id}', 'changeStatus')->name('lottery.change.status');
         Route::delete('/delete/{id}', 'delete')->name('lottery.delete');
         Route::get('/lottery/applicants/{id}', 'applicants')->name('lottery.applicants');
+        Route::post('/lottery/applicants/winner/{id}', 'selectWinner')->name('lottery.applicant.winner');
+        Route::post('/lottery/applicants/random-winner/{lotteryId}', 'randomWinner')->name('lottery.applicant.random.winner');
     });
 });
 
