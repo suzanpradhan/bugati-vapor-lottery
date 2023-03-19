@@ -54,14 +54,15 @@ background-size: cover; min-height: 100vh; position: relative; background-attach
 </header> --}}
 
 <div class="container-fluid">
-    <div class="row no-gutter">
+    <div class="row no-gutter" style="position: relative;">
+        <!-- The overlay -->
+        <div class="d-block d-md-none bg-image-sm"></div>
         <!-- The image half -->
         <div class="col-md-7 d-none d-md-flex bg-image"></div>
 
         <!-- The content half -->
         <div class="col-md-5">
-            <div class="login d-flex align-items-center py-5">
-
+            <div class="lottert {{ (!$lottery) ? 'no-lottert':'' }} d-flex align-items-center py-5" style="background: rgba(255,255,255,.8);">
                 <!-- Demo content-->
                 <div class="container">
                     <div class="row">
