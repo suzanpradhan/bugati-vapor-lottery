@@ -11,4 +11,9 @@ class Applicant extends Model
     use HasFactory, SoftDeletes;
     protected $table = "applicants";
     protected $guarded = [];
+
+    public function lottery()
+    {
+        return $this->belongsTo(Lottery::class);
+    }
 }

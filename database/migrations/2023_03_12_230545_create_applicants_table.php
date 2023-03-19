@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('fullname');
             $table->string('email')->unique();
             $table->string('phone')->unique();
+            $table->boolean('is_winner')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

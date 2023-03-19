@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('from_date');
             $table->string('to_date');
             $table->boolean('is_active');
+            $table->boolean('has_winner')->default(0);
+            $table->string('winner')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
