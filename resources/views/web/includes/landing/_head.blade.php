@@ -127,6 +127,10 @@
         .bg-image {
             clip-path: unset;
         }
+        .no-lottert {
+            min-height: 300px!important;
+            padding-top: 105px!important;
+        }
     }
 </style>
 
@@ -146,9 +150,18 @@
         border: 1px solid #dee2e6;
     }
     
-    .login,
+    .lottert,
     .image {
         min-height: 100vh;
+    }
+
+    .navbar-toggler {
+        border: 1px solid #333;
+        border-radius: 3px;
+    }
+
+    .navbar-toggler:focus {
+        box-shadow: 0 0 0 0.05rem;
     }
 
     .bg-image {
@@ -156,5 +169,17 @@
         background-size: cover;
         background-position: center center;
         clip-path: polygon(103% 0, 89% 50%, 99% 105%, 0 100%, 0 0);
+    }
+
+    .bg-image-sm {
+        background-image: url('http://127.0.0.1:8000/landing/assets/img/bg-hero.jpg');
+        background-size: cover;
+        background-position: center center;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        bottom: 0%;
+        right: 0%;
+        z-index: -1;
     }
 </style>
