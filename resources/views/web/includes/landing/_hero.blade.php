@@ -72,45 +72,51 @@ background-size: cover; min-height: 100vh; position: relative; background-attach
                                 <h3 class="display-4">Anti-Counter<br />Felting Platform</h3>
                                 <p class="text-muted mb-4">Lottery not available now</p>
                             @else
-                            @if (Session::has('success'))
-                                <div class="alert alert-success">{{Session::get('success')}}</div>
-                            @endif
-                            @if (Session::has('error_message'))
-                                <div class="alert alert-danger">{{Session::get('error_message')}}</div>
-                            @endif
-                            <h3 class="display-4">Join Lottery</h3>
-                            <p class="text-muted mb-4">{{$lottery->title}}</p>
-                            <form action="{{ route('web.applicant.join', ['id' => Crypt::encrypt($lottery->id)]) }}"
-                                method="POST">
-                                @csrf
-                                <div class="form-group has-validation mb-3">
-                                    <input name="fullname" type="fullname" placeholder="Full Name" value="{{old('fullname')}}" required=""
-                                        autofocus="" class="@error('fullname') is-invalid @enderror form-control shadow-sm px-4 text-primary" />
-                                    @error('fullname')
-                                    <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group has-validation mb-3">
-                                    <input name="email" type="email" placeholder="name@example.com" value="{{old('email')}}" required
-                                        class="@error('email') is-invalid @enderror form-control shadow-sm px-4 text-primary" />
-                                    @error('email')
-                                    <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group has-validation mb-3">
-                                    <input name="phone" type="phone" placeholder="Your Phone Number" value="{{old('phone')}}" required
-                                        class="@error('phone') is-invalid @enderror form-control shadow-sm px-4 text-primary" />
-                                    @error('phone')
-                                    <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-
-                                <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 shadow-sm">
-                                    Join Lottery
-                                </button>
-                            </form>
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success">{{Session::get('success')}}</div>
+                                @endif
+                                @if (Session::has('error_message'))
+                                    <div class="alert alert-danger">{{Session::get('error_message')}}</div>
+                                @endif
+                                <h3 class="display-4">Join Lottery</h3>
+                                <p class="text-muted m-0 p-0 pb-4 text-capitalize">{{$lottery->title}}</p>
+                                @if($lotteryEnds == true)
+                                    <div class="wrap-countdown mercado-countdown" data-expire="{{ Carbon\Carbon::parse($lottery->to_date)->format('Y/m/d h:i:s') }}"></div>
+                                    <form action="{{ route('web.applicant.join', ['id' => Crypt::encrypt($lottery->id)]) }}"
+                                        method="POST">
+                                        @csrf
+                                        <div class="form-group has-validation mb-3">
+                                            <input name="fullname" type="fullname" placeholder="Full Name" value="{{old('fullname')}}" required=""
+                                                autofocus="" class="@error('fullname') is-invalid @enderror form-control shadow-sm px-4 text-primary" />
+                                            @error('fullname')
+                                            <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+        
+                                        <div class="form-group has-validation mb-3">
+                                            <input name="email" type="email" placeholder="name@example.com" value="{{old('email')}}" required
+                                                class="@error('email') is-invalid @enderror form-control shadow-sm px-4 text-primary" />
+                                            @error('email')
+                                            <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+        
+                                        <div class="form-group has-validation mb-3">
+                                            <input name="phone" type="phone" placeholder="Your Phone Number" value="{{old('phone')}}" required
+                                                class="@error('phone') is-invalid @enderror form-control shadow-sm px-4 text-primary" />
+                                            @error('phone')
+                                            <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+        
+                                        <button type="submit" class="btn btn-dark btn-block text-uppercase mb-2 shadow-sm">
+                                            Join Lottery
+                                        </button>
+                                    </form>
+                                @endif
+                                @if($lotteryEnds == false)
+                                    <div class="py-2 px-4 alert-warning rounded alert-warning">Lottery Completed! registration are closed now.</div>
+                                @endif
                             @endif
                         </div>
                     </div>

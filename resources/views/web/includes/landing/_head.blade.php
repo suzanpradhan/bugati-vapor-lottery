@@ -182,4 +182,11 @@
         right: 0%;
         z-index: -1;
     }
+
+    .wrap-countdown {
+        font-size: 18px;
+        line-height: 21px;
+        padding: 20px 0;
+        color: lightslategrey;
+    }
 </style>
