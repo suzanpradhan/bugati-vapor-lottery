@@ -17,11 +17,16 @@ class LandingController extends Controller
     public function landing()
     {
         $lottery = Lottery::where('is_active', 1)->first();
-        $now = date("m/d/Y");
-        $toDate = Carbon::createFromFormat('m/d/Y', $lottery->to_date);
-        $date = Carbon::createFromFormat('m/d/Y', $now);
-
-        $lotteryEnds = $toDate->gt($date);
+        if($lottery == null)
+        {
+            $lotteryEnds = '';
+        } else {
+            $now = date("m/d/Y");
+            $toDate = Carbon::createFromFormat('m/d/Y', $lottery->to_date);
+            $date = Carbon::createFromFormat('m/d/Y', $now);
+            $lotteryEnds = $toDate->gt($date);
+        }
+        
         return view('web.pages.front', compact('lottery', 'lotteryEnds'));
     }
 

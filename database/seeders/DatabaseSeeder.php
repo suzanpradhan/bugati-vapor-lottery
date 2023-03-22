@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::create([
             'username' => 'admin.bugatti',
             'email' => 'info@bugatti-e.com',
-            'password' => Hash::make('bugatti123')
+            'password' => Hash::make('@bugatti4780#')
         ]);
     }
 }
